@@ -1,7 +1,13 @@
 FROM kalilinux/kali-rolling:latest
 WORKDIR /root
 #deps
-RUN apt update 
+RUN apt update && apt-get install -y  icu-devtools locales && rm -rf /var/lib/apt/lists/* \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
+ENV TIME_ZONE=America/Sao_Paulo
+RUN echo "America/Sao_Paulo" > /etc/timezone
+
+RUN apt update && apt full-upgrade -y
 RUN apt install net-tools iputils-ping git curl zsh tmux -y
 # tmux
 RUN cd && \
@@ -24,5 +30,9 @@ RUN  .asdf/bin/asdf plugin add dotnet && \
     .asdf/bin/asdf plugin add rust && \
     .asdf/bin/asdf plugin add julia && \
     .asdf/bin/asdf plugin add java
+
+#install dotnet
+RUN .asdf/bin/asdf install dotnet 7.0.202 && \
+    .asdf/bin/asdf global dotnet 7.0.202
 
 CMD [ "/bin/bash" ]
