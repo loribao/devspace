@@ -2,9 +2,9 @@ apiVersion: v1
 kind: Pod
 metadata:
   namespace: debug-tools
-  name: kali
+  name: devspace
   labels:
-    app: kali
+    app: devspace
 spec:
   containers:
   - image: loribao/environment-dev-kali:latest
@@ -13,5 +13,5 @@ spec:
       - "-f" 
       - "/var/log/apt/history.log"
     imagePullPolicy: IfNotPresent
-    name: kali
+    name: devspace
   restartPolicy: Always
