@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: debug-tools
+  name: kali
+  labels:
+    app: kali
+spec:
+  containers:
+  - image: loribao/environment-dev-kali:latest
+    command:
+      - "tail"
+      - "-f" 
+      - "/var/log/apt/history.log"
+    imagePullPolicy: IfNotPresent
+    name: kali
+  restartPolicy: Always
