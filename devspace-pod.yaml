@@ -7,14 +7,14 @@ metadata:
     app: devspace
 spec:
   containers:
-  - image: loribao/devspace
-    securityContext:
-      capabilities:
-        add: ["NET_ADMIN", "SYS_TIME","SYS_ADMIN","DAC_READ_SEARCH "]
-    command:
-      - "tail"
-      - "-f" 
-      - "/var/log/apt/history.log"
-    imagePullPolicy: IfNotPresent
-    name: devspace
+    - image: loribao/devspace
+      securityContext:
+        capabilities:
+          add: ["NET_ADMIN", "SYS_TIME", "SYS_ADMIN", "DAC_READ_SEARCH "]
+      command:
+        - "tail"
+        - "-f"
+        - "/var/log/apt/history.log"
+      imagePullPolicy: IfNotPresent
+      name: devspace
   restartPolicy: Always
