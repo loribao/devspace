@@ -8,6 +8,9 @@ metadata:
 spec:
   containers:
   - image: loribao/devspace
+    securityContext:
+      capabilities:
+        add: ["NET_ADMIN", "SYS_TIME","SYS_ADMIN","DAC_READ_SEARCH "]
     command:
       - "tail"
       - "-f" 
